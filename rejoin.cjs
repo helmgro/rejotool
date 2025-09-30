@@ -38,7 +38,9 @@ const screenshot = require("screenshot-desktop");
 const COOKIES_FILE = path.join(__dirname, "cookies.txt");
 class MultiRejoinTool {
   constructor() {
-    // ...
+    this.instances = [];
+    this.isRunning = false;
+    this.startTime = Date.now(); // Para calcular uptime
   }
 
   async injectCookiesFromFile(rl) {
@@ -113,25 +115,8 @@ class MultiRejoinTool {
     console.log("\n🚪 Todas las cookies han sido eliminadas. Las sesiones han sido cerradas.");
   }
 
-  // ...otros métodos de la clase...
+  // ...aquí van el resto de tus métodos de MultiRejoinTool, como start(), setupPackages(), etc...
 }
-
-
-class Utils {
-  static ensureRoot() {
-    try {
-      const uid = execSync("id -u").toString().trim();
-      if (uid !== "0") {
-        const node = execSync("which node").toString().trim();
-        console.log("Cần quyền root, chuyển qua su...");
-        execSync(`su -c "${node} ${__filename}"`, { stdio: "inherit" });
-        process.exit(0);
-      }
-    } catch (e) {
-      console.error("Không thể chạy với quyền root:", e.message);
-      process.exit(1);
-    }
-  }
 
   static enableWakeLock() {
     try {
