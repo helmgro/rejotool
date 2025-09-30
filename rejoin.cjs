@@ -983,13 +983,6 @@ class UIRenderer {
   }
 }
 
-class MultiRejoinTool {
-  constructor() {
-    this.instances = [];
-    this.isRunning = false;
-    this.startTime = Date.now(); // Thêm thời gian bắt đầu để tính uptime
-  }
-
   async start() {
     try {
       Utils.ensureRoot();
